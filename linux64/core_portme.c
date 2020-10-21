@@ -181,6 +181,19 @@ get_time(void)
 {
     CORE_TICKS elapsed
         = (CORE_TICKS)(MYTIMEDIFF(stop_time_val, start_time_val));
+    ee_printf("start time = 0x ");
+    for (int i = 0; i < sizeof(start_time_val); i++) {
+        printf("%02x ", *((unsigned char *)(&start_time_val) + i));
+    }
+    ee_printf("\n");
+    ee_printf("stop time = 0x ");
+    for (int i = 0; i < sizeof(stop_time_val); i++) {
+        ee_printf("%02x ", *((unsigned char *)(&stop_time_val) + i));
+    }
+    ee_printf("\n");
+    ee_printf("elapsed ticks = 0x %llx (%lld)\n", 
+              (unsigned long long)elapsed, 
+              (unsigned long long)elapsed);
     return elapsed;
 }
 /* Function: time_in_secs
